@@ -1,4 +1,6 @@
-/*
- * Use this file if you want to extract helpers from your solutions.
- * Example import from this file: `use advent_of_code::helpers::example_fn;`.
- */
+pub fn parse_calories(input: &str) -> impl Iterator<Item = u32> + '_ {
+    input.split("\n\n").map(|x| {
+        let total_calories: u32 = x.lines().map(|cal| cal.parse().unwrap_or(0)).sum();
+        total_calories
+    })
+}
