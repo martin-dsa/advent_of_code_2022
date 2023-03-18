@@ -8,7 +8,7 @@ impl Range {
         let Range(s1, e1) = self;
         s1 >= s2 && e1 <= e2
     }
-    
+
     fn part_includes(&self, Range(s2, e2): &Range) -> bool {
         let Range(s1, e1) = self;
         (s1 >= s2 || e1 >= s2) && (s1 <= e2 || e1 <= e2)
