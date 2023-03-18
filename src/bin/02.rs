@@ -80,37 +80,25 @@ fn calc2((m1, r): (Move, GameResult)) -> u32 {
 }
 
 pub fn part_one(input: &str) -> Option<u32> {
-    let sum = input
+    input
         .lines()
         .map(|l| {
             l.split_once(' ')
                 .map(|x| (Move::from_str(x.0), Move::from_str(x.1)))
                 .map(calc1)
-                .unwrap()
         })
-        .sum::<u32>();
-
-    match sum {
-        0 => None,
-        s => Some(s),
-    }
+        .sum()
 }
 
 pub fn part_two(input: &str) -> Option<u32> {
-    let sum = input
+    input
         .lines()
         .map(|l| {
             l.split_once(' ')
                 .map(|x| (Move::from_str(x.0), GameResult::from_str(x.1)))
                 .map(calc2)
-                .unwrap()
         })
-        .sum::<u32>();
-
-    match sum {
-        0 => None,
-        s => Some(s),
-    }
+        .sum()
 }
 
 fn main() {
@@ -126,12 +114,12 @@ mod tests {
     #[test]
     fn test_part_one() {
         let input = advent_of_code::read_file("examples", 2);
-        assert_eq!(part_one(&input), None);
+        assert_eq!(part_one(&input), Some(15));
     }
 
     #[test]
     fn test_part_two() {
         let input = advent_of_code::read_file("examples", 2);
-        assert_eq!(part_two(&input), None);
+        assert_eq!(part_two(&input), Some(12));
     }
 }

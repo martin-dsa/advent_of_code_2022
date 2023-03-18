@@ -1,13 +1,7 @@
 use advent_of_code::helpers::parse_calories;
 
 pub fn part_one(input: &str) -> Option<u32> {
-    let max_calories = parse_calories(input).max_by(|v1, v2| v1.cmp(v2));
-
-    if let Some(0) = max_calories {
-        return None;
-    }
-
-    max_calories
+    parse_calories(input).max_by(|v1, v2| v1.cmp(v2))
 }
 
 pub fn part_two(input: &str) -> Option<u32> {
@@ -31,12 +25,12 @@ mod tests {
     #[test]
     fn test_part_one() {
         let input = advent_of_code::read_file("examples", 1);
-        assert_eq!(part_one(&input), None);
+        assert_eq!(part_one(&input), Some(24000));
     }
 
     #[test]
     fn test_part_two() {
         let input = advent_of_code::read_file("examples", 1);
-        assert_eq!(part_two(&input), None);
+        assert_eq!(part_two(&input), Some(45000));
     }
 }
