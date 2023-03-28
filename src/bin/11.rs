@@ -106,8 +106,6 @@ impl Monkey {
             false_case,
         } = self.test;
 
-        
-
         if val % value == 0 {
             true_case
         } else {
