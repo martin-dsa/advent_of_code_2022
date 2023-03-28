@@ -106,13 +106,13 @@ impl Monkey {
             false_case,
         } = self.test;
 
-        let idx = if val % value == 0 {
+        
+
+        if val % value == 0 {
             true_case
         } else {
             false_case
-        };
-
-        idx
+        }
     }
 }
 
