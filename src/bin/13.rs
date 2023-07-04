@@ -21,8 +21,8 @@ impl Ord for Packet {
         match (self, other) {
             (Packet::N(n1), Packet::N(n2)) => n1.cmp(n2),
             (Packet::A(arr1), Packet::A(arr2)) => cmp_arr(arr1, arr2),
-            (Packet::N(n), Packet::A(arr)) => cmp_arr(&vec![Packet::N(*n)], arr),
-            (Packet::A(arr), Packet::N(n)) => cmp_arr(arr, &vec![Packet::N(*n)]),
+            (Packet::N(n), Packet::A(arr)) => cmp_arr(&[Packet::N(*n)], arr),
+            (Packet::A(arr), Packet::N(n)) => cmp_arr(arr, &[Packet::N(*n)]),
         }
     }
 }
@@ -36,7 +36,7 @@ impl fmt::Display for Packet {
     }
 }
 
-fn cmp_arr(a: &Vec<Packet>, b: &Vec<Packet>) -> Ordering {
+fn cmp_arr(a: &[Packet], b: &[Packet]) -> Ordering {
     let mut cursor: Ordering = Equal;
     let mut i = 0;
 
@@ -79,7 +79,7 @@ pub fn part_two(input: &str) -> Option<usize> {
     let div_packet_2 = Packet::A(vec![Packet::A(vec![Packet::N(6)])]);
 
     let mut packets: Vec<Packet> = input
-        .split("\n")
+        .split('\n')
         .filter_map(|line| serde_json::from_str(line).ok())
         .collect();
 
