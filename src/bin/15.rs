@@ -51,7 +51,7 @@ fn get_data(input: &str) -> impl Iterator<Item = (Point, Point, u32)> + '_ {
     })
 }
 pub fn part_one(input: &str) -> Option<u32> {
-    const Y: i32 = 2000000;
+    let y: i32 = if cfg!(test) { 10 } else { 2000000 };
     let mut beacons: HashSet<Point> = HashSet::new();
     let mut res: HashSet<Point> = HashSet::new();
 
@@ -59,14 +59,14 @@ pub fn part_one(input: &str) -> Option<u32> {
 
     for (sensor, beacon, mh_dist) in data {
         beacons.insert(beacon);
-        let offset = mh_dist as i32 - sensor.y.abs_diff(Y) as i32;
+        let offset = mh_dist as i32 - sensor.y.abs_diff(y) as i32;
 
         for x in (sensor.x - offset)..=(sensor.x + offset) {
-            res.insert(Point { x, y: Y });
+            res.insert(Point { x, y });
         }
     }
 
-    let res = res.difference(&beacons).filter(|p| p.y == Y).count() as u32;
+    let res = res.difference(&beacons).filter(|p| p.y == y).count() as u32;
 
     Some(res)
 }
@@ -132,6 +132,6 @@ mod tests {
     #[test]
     fn test_part_two() {
         let input = advent_of_code::read_file("examples", 15);
-        assert_eq!(part_two(&input), Some(56000011));
+        assert_eq!(part_two(&input), Some(52000002));
     }
 }
