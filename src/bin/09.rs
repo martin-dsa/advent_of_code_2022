@@ -144,7 +144,7 @@ pub fn part_two(input: &str) -> Option<u32> {
 
             for idx in 1..LEN {
                 let first = rope[idx - 1];
-                let mut second = &mut rope[idx];
+                let second = &mut rope[idx];
 
                 if should_move_knot(&first, second) {
                     let is_last = idx == LEN - 1;
